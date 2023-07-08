@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiTeste.Models
 {
+    /// <summary>
+    /// Classe básica que encapsula e valida os dados enviados pelo cliente e obtidos no banco de dados.
+    /// </summary>
     [Table("tb_pessoas")]
     public class Pessoa
     {

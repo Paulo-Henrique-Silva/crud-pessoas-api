@@ -1,5 +1,8 @@
 ﻿namespace ApiTeste.Models
 {
+    /// <summary>
+    /// Encapsula dados das respostas mal sucedidas da API.
+    /// </summary>
     public class RespostaErroAPI
     {
         public bool Success { get; } = false;

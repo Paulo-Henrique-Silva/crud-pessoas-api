@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiTeste.Repositories
 {
+    /// <summary>
+    /// Realiza as operações CRUD na tabela de pessoas.
+    /// </summary>
     public class PessoaRepository
     {
         private readonly DataContext dataContext;

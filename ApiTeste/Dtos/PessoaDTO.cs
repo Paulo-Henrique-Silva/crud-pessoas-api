@@ -2,6 +2,9 @@
 
 namespace ApiTeste.Dtos
 {
+    /// <summary>
+    /// DTO para encapsular dados enviados no cadastro e edição de pessoas.
+    /// </summary>
     public class PessoaDTO
     {
         public string Nome { get; set; }

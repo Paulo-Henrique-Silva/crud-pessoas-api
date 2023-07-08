@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiTeste.Controllers
 {
+    /// <summary>
+    /// Mapea as rotas e os métodos HTTP disponíveis para "pessoas".
+    /// </summary>
     [Controller]
     [Route("api/v1/pessoas")]
     public class PessoaController : ControllerBase
@@ -44,7 +47,7 @@ namespace ApiTeste.Controllers
         {
             try
             {
-                var pessoa = pessoaService.ObterPorId(id);
+                Pessoa pessoa = pessoaService.ObterPorId(id);
 
                 var resposta = new RespostaSucessoAPI<Pessoa>(StatusCodes.Status200OK,
                     $"Pessoa de ID {pessoa.Id} obtida com sucesso!", pessoa);
@@ -72,7 +75,7 @@ namespace ApiTeste.Controllers
         {
             try
             {
-                var pessoa = pessoaService.Cadastrar(pessoaDTO);
+                Pessoa pessoa = pessoaService.Cadastrar(pessoaDTO);
 
                 var resposta = new RespostaSucessoAPI<Pessoa>(StatusCodes.Status201Created,
                     $"Pessoa de ID {pessoa.Id} criada com sucesso!", pessoa);
@@ -100,7 +103,7 @@ namespace ApiTeste.Controllers
         {
             try
             {
-                var pessoa = pessoaService.EditarPorId(id, pessoaDTO);
+                Pessoa pessoa = pessoaService.EditarPorId(id, pessoaDTO);
 
                 var resposta = new RespostaSucessoAPI<Pessoa>(StatusCodes.Status200OK,
                     $"Pessoa de ID {pessoa.Id} editada com sucesso!", pessoa);
