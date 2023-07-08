@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ApiTeste.Services
 {
     /// <summary>
-    /// Oferece serviços referentes as operações disponíveis para pessoas.
+    /// Oferece serviços referentes as operações disponíveis para pessoas e ecapsula as regras de negócio.
     /// </summary>
     public class PessoaService
     {
@@ -68,6 +68,12 @@ namespace ApiTeste.Services
 
         public Pessoa ConverterDTO(PessoaDTO pessoaDTO)
         {
+            //Caso a DTO seja null, significa que os dados enviados não conseguem ser convertidos para os tipos primitivos.
+            if (pessoaDTO == null)
+            {
+                throw new EntradaInvalidaException("Não foi possível converter os dados enviados.");
+            }
+
             return new Pessoa(pessoaDTO.Nome, pessoaDTO.Cidade, pessoaDTO.Salario);
         }
 
