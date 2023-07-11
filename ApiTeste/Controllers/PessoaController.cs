@@ -23,7 +23,7 @@ namespace ApiTeste.Controllers
         }
 
         [HttpGet]
-        public ActionResult Listar()
+        public ActionResult ObterTudo()
         {
             try
             {
