@@ -12,9 +12,9 @@ namespace ApiTeste.Services
     /// </summary>
     public class PessoaService : IPessoaService
     {
-        private readonly PessoaRepository pessoaRepository;
+        private readonly IPessoaRepository pessoaRepository;
 
-        public PessoaService(PessoaRepository pessoaRepository) 
+        public PessoaService(IPessoaRepository pessoaRepository) 
         { 
             this.pessoaRepository = pessoaRepository;
         }

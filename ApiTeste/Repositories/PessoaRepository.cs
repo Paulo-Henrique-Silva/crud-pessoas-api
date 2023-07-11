@@ -1,4 +1,5 @@
 ﻿using ApiTeste.Data;
+using ApiTeste.Interfaces;
 using ApiTeste.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +8,7 @@ namespace ApiTeste.Repositories
     /// <summary>
     /// Realiza as operações CRUD na tabela de pessoas.
     /// </summary>
-    public class PessoaRepository
+    public class PessoaRepository : IPessoaRepository
     {
         private readonly DataContext dataContext;
 

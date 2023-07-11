@@ -15,7 +15,7 @@ builder.Services.AddDbContext<DataContext>(obj => obj.UseMySql(builder.Configura
     , ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("conexaoMySQL"))));
 
 builder.Services.AddScoped<IPessoaService, PessoaService>();
-builder.Services.AddScoped<PessoaRepository>();
+builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
