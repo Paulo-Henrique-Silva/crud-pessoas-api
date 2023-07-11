@@ -1,5 +1,6 @@
 ﻿using ApiTeste.Dtos;
 using ApiTeste.Exceptions;
+using ApiTeste.Interfaces;
 using ApiTeste.Models;
 using ApiTeste.Repositories;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ namespace ApiTeste.Services
     /// <summary>
     /// Oferece serviços referentes as operações disponíveis para pessoas e ecapsula as regras de negócio.
     /// </summary>
-    public class PessoaService
+    public class PessoaService : IPessoaService
     {
         private readonly PessoaRepository pessoaRepository;
 

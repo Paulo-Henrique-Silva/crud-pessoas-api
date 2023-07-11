@@ -1,6 +1,7 @@
 ﻿using ApiTeste.Data;
 using ApiTeste.Dtos;
 using ApiTeste.Exceptions;
+using ApiTeste.Interfaces;
 using ApiTeste.Models;
 using ApiTeste.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,9 @@ namespace ApiTeste.Controllers
     [Route("api/v1/pessoas")]
     public class PessoaController : ControllerBase
     {
-        private readonly PessoaService pessoaService;
+        private readonly IPessoaService pessoaService;
 
-        public PessoaController(PessoaService pessoaService)
+        public PessoaController(IPessoaService pessoaService)
         {
             this.pessoaService = pessoaService;
         }
