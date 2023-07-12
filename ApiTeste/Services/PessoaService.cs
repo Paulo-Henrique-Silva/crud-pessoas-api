@@ -4,6 +4,7 @@ using ApiTeste.Interfaces;
 using ApiTeste.Models;
 using ApiTeste.Repositories;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ApiTeste.Services
 {
@@ -19,9 +20,23 @@ namespace ApiTeste.Services
             this.pessoaRepository = pessoaRepository;
         }
 
-        public List<Pessoa> ObterTudo()
+        public List<Pessoa> ObterTudo(string ordernarPor)
         {
-            return pessoaRepository.ObterTudoAsync().Result;
+            var pessoas = pessoaRepository.ObterTudoAsync().Result;
+
+            //ordena conforme a ordenação especificada.
+            if (ordernarPor.Equals("id"))
+            {
+                return pessoas.OrderBy(pessoa => pessoa.Id).ToList();
+            }
+            else if (ordernarPor.Equals("salario"))
+            {
+                return pessoas.OrderBy(pessoa => pessoa.Salario).ToList();
+            }
+            else
+            {
+                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'ordenarpor'.");
+            }
         }
 
         public Pessoa ObterPorId(int id)

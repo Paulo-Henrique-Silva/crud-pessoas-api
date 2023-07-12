@@ -21,17 +21,24 @@ namespace ApiTeste.Controllers
             this.pessoaService = pessoaService;
         }
 
-        [HttpGet]
-        public ActionResult ObterTudo()
+        [HttpGet("{ordernarpor?}")]
+        public ActionResult ObterTudo([FromQuery] string ordenarPor = "id")
         {
             try
             {
-                List<Pessoa> pessoas = pessoaService.ObterTudo();
+                List<Pessoa> pessoas = pessoaService.ObterTudo(ordenarPor);
 
                 var resposta = new RespostaSucessoAPI<List<Pessoa>>(StatusCodes.Status200OK, 
                     "Lista de pessoas obtida com sucesso!", pessoas);
 
                 return Ok(resposta);
+            }
+            catch (EntradaInvalidaException ex)
+            {
+                var resposta = new RespostaErroAPI(StatusCodes.Status400BadRequest,
+                    ex.Message);
+
+                return BadRequest(resposta);
             }
             catch (Exception)
             {

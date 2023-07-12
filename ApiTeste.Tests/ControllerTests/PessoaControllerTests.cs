@@ -24,10 +24,10 @@ namespace ApiTeste.Tests.ControllerTests
             {
                 new Pessoa(1, "N1", "C1", 1),
                 new Pessoa(2, "N2", "C2", 2),
-                new Pessoa(2, "N3", "C3", 3)
+                new Pessoa(3, "N3", "C3", 3)
             };
 
-            mockPessoaService.Setup(service => service.ObterTudo())
+            mockPessoaService.Setup(service => service.ObterTudo("id"))
                 .Returns(pessoasEsperadas);
 
             var pessoaController = new PessoaController(mockPessoaService.Object);
