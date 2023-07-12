@@ -100,11 +100,11 @@ namespace ApiTeste.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Editar(int id, [FromBody] PessoaDTO pessoaDTO)
+        public ActionResult EditarPorId(int id, [FromBody] PessoaDTO pessoaDTO)
         {
             try
             {
-                Pessoa pessoa = pessoaService.EditarPorId(id, pessoaDTO);
+                Pessoa pessoa = pessoaService.Editar(id, pessoaDTO);
 
                 var resposta = new RespostaSucessoAPI<Pessoa>(StatusCodes.Status200OK,
                     $"Pessoa de ID {pessoa.Id} editada com sucesso!", pessoa);

@@ -11,7 +11,7 @@ namespace ApiTeste.Interfaces
 
         Pessoa Cadastrar(PessoaDTO pessoa);
 
-        Pessoa EditarPorId(int id, PessoaDTO pessoaDTO);
+        Pessoa Editar(int id, PessoaDTO pessoaDTO);
 
         void RemoverPorId(int id);
 

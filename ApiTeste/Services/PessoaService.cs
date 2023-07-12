@@ -41,7 +41,7 @@ namespace ApiTeste.Services
             return pessoaRepository.CadastrarAsync(pessoa).Result;
         }
 
-        public Pessoa EditarPorId(int id, PessoaDTO pessoaDTO)
+        public Pessoa Editar(int id, PessoaDTO pessoaDTO)
         {
             if (!ExistePorId(id))
             {

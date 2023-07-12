@@ -109,5 +109,117 @@ namespace ApiTeste.Tests.ControllerTests
             Assert.NotNull(repostasAPIObtida);
             Assert.Equivalent(pessoaEsperada, repostasAPIObtida.Data);
         }
+
+        [Fact]
+        public void Cadastrar_Deve_Retornar_Erro_400()
+        {
+            var pessoaDTO = new PessoaDTO("N1", "C1", 1);
+            var excecao = new EntradaInvalidaException("Dados inválidos!");
+
+            mockPessoaService.Setup(service => service.Cadastrar(pessoaDTO))
+                .Throws(excecao);
+
+            var pessoaController = new PessoaController(mockPessoaService.Object);
+
+            var resultadoObtido = pessoaController.Cadastrar(pessoaDTO);
+
+            //Testa action result
+            Assert.NotNull(resultadoObtido);
+            var resultadoBadRequest = Assert.IsType<BadRequestObjectResult>(resultadoObtido);
+
+            //testa objeto contido no action result
+            var repostasAPIObtida = Assert.IsType<RespostaErroAPI>(resultadoBadRequest.Value);
+            Assert.NotNull(repostasAPIObtida);
+        }
+
+        [Fact]
+        public void Editar_Deve_Retornar_Pessoa_Alterada()
+        {
+            int id = 1;
+            var pessoaDTO = new PessoaDTO("N1", "C1", 1);
+            var pessoaEsperada = new Pessoa(1, "N1", "C1", 1);
+
+            mockPessoaService.Setup(service => service.Editar(id, pessoaDTO))
+                .Returns(pessoaEsperada);
+
+            var pessoaController = new PessoaController(mockPessoaService.Object);
+
+            var resultadoObtido = pessoaController.EditarPorId(id, pessoaDTO);
+
+            //Testa action result
+            Assert.NotNull(resultadoObtido);
+            var resultadoOk = Assert.IsType<OkObjectResult>(resultadoObtido);
+
+            //testa objeto contido no action result
+            var repostasAPIObtida = Assert.IsType<RespostaSucessoAPI<Pessoa>>(resultadoOk.Value);
+            Assert.NotNull(repostasAPIObtida);
+            Assert.Equivalent(pessoaEsperada, repostasAPIObtida.Data);
+        }
+
+        [Fact]
+        public void Editar_Deve_Retornar_Erro_404()
+        {
+            int id = 0;
+            var pessoaDTO = new PessoaDTO("N1", "C1", 1);
+            var excecao = new PessoaNaoExisteException("Não existe uma pessoa de ID: " + id);
+
+            mockPessoaService.Setup(service => service.Editar(id, pessoaDTO))
+                .Throws(excecao);
+
+            var pessoaController = new PessoaController(mockPessoaService.Object);
+
+            var resultadoObtido = pessoaController.EditarPorId(id, pessoaDTO);
+
+            //Testa action result
+            Assert.NotNull(resultadoObtido);
+            var resultadoOk = Assert.IsType<OkObjectResult>(resultadoObtido);
+
+            //testa objeto contido no action result
+            var repostasAPIObtida = Assert.IsType<RespostaSucessoAPI<Pessoa>>(resultadoOk.Value);
+            Assert.NotNull(repostasAPIObtida);
+        }
+
+        [Fact]
+        public void Remover_Deve_Remover_Pessoa_Corretamente()
+        {
+            int id = 1;
+
+            mockPessoaService.Setup(service => service.RemoverPorId(id));
+
+            var pessoaController = new PessoaController(mockPessoaService.Object);
+
+            var resultadoObtido = pessoaController.Remover(id);
+
+            //Testa action result
+            Assert.NotNull(resultadoObtido);
+            var resultadoOk = Assert.IsType<OkObjectResult>(resultadoObtido);
+
+            //testa objeto contido no action result
+            var repostasAPIObtida = Assert.IsType<RespostaSucessoAPI<Pessoa>>(resultadoOk.Value);
+            Assert.NotNull(repostasAPIObtida);
+        }
+
+        //[Fact]
+        //public void Editar_Deve_Retornar_Erro_404()
+        //{
+        //    int id = 0;
+        //    var pessoaDTO = new PessoaDTO("N1", "C1", 1);
+        //    var excecao = new PessoaNaoExisteException("Não existe uma pessoa de ID: " + id);
+
+        //    mockPessoaService.Setup(service => service.Editar(id, pessoaDTO))
+        //        .Throws(excecao);
+
+        //    var pessoaController = new PessoaController(mockPessoaService.Object);
+
+        //    var resultadoObtido = pessoaController.EditarPorId(id, pessoaDTO);
+
+        //    //Testa action result
+        //    Assert.NotNull(resultadoObtido);
+        //    var resultadoNotfound = Assert.IsType<NotFoundObjectResult>(resultadoObtido);
+
+        //    //testa objeto contido no action result
+        //    var repostasAPIObtida = Assert.IsType<RespostaErroAPI>(resultadoNotfound.Value);
+        //    Assert.NotNull(repostasAPIObtida);
+        //}
     }
 }
