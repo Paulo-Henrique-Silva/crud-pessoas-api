@@ -172,10 +172,10 @@ namespace ApiTeste.Tests.ControllerTests
 
             //Testa action result
             Assert.NotNull(resultadoObtido);
-            var resultadoOk = Assert.IsType<OkObjectResult>(resultadoObtido);
+            var resultadoNotFound = Assert.IsType<NotFoundObjectResult>(resultadoObtido);
 
             //testa objeto contido no action result
-            var repostasAPIObtida = Assert.IsType<RespostaSucessoAPI<Pessoa>>(resultadoOk.Value);
+            var repostasAPIObtida = Assert.IsType<RespostaErroAPI>(resultadoNotFound.Value);
             Assert.NotNull(repostasAPIObtida);
         }
 
