@@ -141,7 +141,7 @@ namespace ApiTeste.Controllers
             {
                 pessoaService.RemoverPorId(id);
 
-                var resposta = new RespostaSucessoAPI(StatusCodes.Status200OK,
+                var resposta = new RespostaSucessoAPI(StatusCodes.Status200OK, 
                     $"Pessoa de ID {id} deletada com sucesso!");
 
                 return Ok(resposta);
