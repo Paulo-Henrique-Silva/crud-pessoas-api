@@ -22,11 +22,11 @@ namespace ApiTeste.Controllers
         }
 
         [HttpGet("{ordernarpor?}")]
-        public ActionResult ObterTudo([FromQuery] string ordenarPor = "id")
+        public ActionResult ObterTudo([FromQuery] string ordernarPor = "id")
         {
             try
             {
-                List<Pessoa> pessoas = pessoaService.ObterTudo(ordenarPor);
+                List<Pessoa> pessoas = pessoaService.ObterTudo(ordernarPor);
 
                 var resposta = new RespostaSucessoAPI<List<Pessoa>>(StatusCodes.Status200OK, 
                     "Lista de pessoas obtida com sucesso!", pessoas);
