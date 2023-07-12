@@ -49,7 +49,7 @@ namespace ApiTeste.Services
             }
 
             Pessoa pessoa = ConverterDTO(pessoaDTO);
-            pessoa.Id = id; //adds ID to not insert a new record on DB.
+            pessoa.Id = id; //adiciona o ID para evitar a inserção de um novo registro no BD.
 
             Validar(pessoa);
 

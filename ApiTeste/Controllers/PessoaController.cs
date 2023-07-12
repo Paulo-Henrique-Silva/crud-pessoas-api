@@ -43,7 +43,7 @@ namespace ApiTeste.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult ObterPorId(int id)
+        public ActionResult ObterPorId([FromRoute] int id)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace ApiTeste.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult EditarPorId(int id, [FromBody] PessoaDTO pessoaDTO)
+        public ActionResult EditarPorId([FromRoute] int id, [FromBody] PessoaDTO pessoaDTO)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace ApiTeste.Controllers
         }
         
         [HttpDelete("{id}")]
-        public ActionResult Remover(int id)
+        public ActionResult Remover([FromRoute] int id)
         {
             try
             {
