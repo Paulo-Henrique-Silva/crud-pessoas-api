@@ -68,7 +68,7 @@ namespace ApiTeste.Tests.ControllerTests
         }
 
         [Fact]
-        public void ObterPorId_Deve_Retornar_Erro_404()
+        public void ObterPorId_Deve_Retornar_Erro_Pessoa_Nao_Existe()
         {
             int id = 0; //representa IDs que não existem ou parâmetros incorretos.
             var excecao = new PessoaNaoExisteException("Não existe uma pessoa com o ID: " + id);
@@ -111,7 +111,7 @@ namespace ApiTeste.Tests.ControllerTests
         }
 
         [Fact]
-        public void Cadastrar_Deve_Retornar_Erro_400()
+        public void Cadastrar_Deve_Retornar_Erro_Dados_Invalidos()
         {
             var pessoaDTO = new PessoaDTO("N1", "C1", 1);
             var excecao = new EntradaInvalidaException("Dados inválidos!");
@@ -157,7 +157,7 @@ namespace ApiTeste.Tests.ControllerTests
         }
 
         [Fact]
-        public void Editar_Deve_Retornar_Erro_404()
+        public void Editar_Deve_Retornar_Erro_Pessoa_Nao_Existe()
         {
             int id = 0;
             var pessoaDTO = new PessoaDTO("N1", "C1", 1);
@@ -180,7 +180,7 @@ namespace ApiTeste.Tests.ControllerTests
         }
 
         [Fact]
-        public void Editar_Deve_Retornar_Erro_400()
+        public void Editar_Deve_Retornar_Erro_Dados_Invalidos()
         {
             int id = 0;
             var pessoaDTO = new PessoaDTO("N1", "C1", 1);
@@ -223,7 +223,7 @@ namespace ApiTeste.Tests.ControllerTests
         }
 
         [Fact]
-        public void Remover_Deve_Retornar_Erro_404()
+        public void Remover_Deve_Retornar_Erro_Pessoa_Nao_Existe()
         {
             int id = 0;
             var excecao = new PessoaNaoExisteException("Não existe uma pessoa de ID: " + id);
