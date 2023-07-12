@@ -3,7 +3,6 @@ using ApiTeste.Dtos;
 using ApiTeste.Exceptions;
 using ApiTeste.Interfaces;
 using ApiTeste.Models;
-using ApiTeste.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiTeste.Controllers

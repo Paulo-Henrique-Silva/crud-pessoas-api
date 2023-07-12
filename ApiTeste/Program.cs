@@ -1,6 +1,5 @@
 using ApiTeste.Data;
 using ApiTeste.Interfaces;
-using ApiTeste.Models;
 using ApiTeste.Repositories;
 using ApiTeste.Services;
 using Microsoft.EntityFrameworkCore;
