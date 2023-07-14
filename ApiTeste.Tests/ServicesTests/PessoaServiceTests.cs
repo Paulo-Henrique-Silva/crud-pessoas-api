@@ -35,7 +35,7 @@ namespace ApiTeste.Tests.ServicesTests
             var pessoa = new Pessoa(1, nome, cidade, salario);
             var pessoaService = new PessoaService(mockPessoaRepository.Object);
 
-            Assert.Throws<EntradaInvalidaException>(() => pessoaService.Validar(pessoa));
+            Assert.Throws<EntradaInvalidaException>(() => pessoaService.ValidarPessoa(pessoa));
         }
     }
 }

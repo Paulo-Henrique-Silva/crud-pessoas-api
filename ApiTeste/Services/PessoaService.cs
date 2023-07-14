@@ -81,7 +81,7 @@ namespace ApiTeste.Services
         {
             Pessoa pessoa = ConverterDTO(pessoaDTO);
 
-            Validar(pessoa);
+            ValidarPessoa(pessoa);
 
             return pessoaRepository.CadastrarAsync(pessoa).Result;
         }
@@ -96,7 +96,7 @@ namespace ApiTeste.Services
             Pessoa pessoa = ConverterDTO(pessoaDTO);
             pessoa.Id = id; //adiciona o ID para evitar a inserção de um novo registro no BD.
 
-            Validar(pessoa);
+            ValidarPessoa(pessoa);
 
             return pessoaRepository.EditarAsync(pessoa).Result;
         }
@@ -112,7 +112,12 @@ namespace ApiTeste.Services
             _ = pessoaRepository.RemoverAsync(ObterPorId(id)); 
         }
 
-        public Pessoa ConverterDTO(PessoaDTO pessoaDTO)
+        public bool ExistePorId(int id)
+        {
+            return pessoaRepository.ExistePorIdAsync(id).Result;
+        }
+
+        private static Pessoa ConverterDTO(PessoaDTO pessoaDTO)
         {
             //Caso a DTO seja null, significa que os dados enviados não conseguem ser convertidos para os tipos primitivos.
             if (pessoaDTO == null)
@@ -123,12 +128,7 @@ namespace ApiTeste.Services
             return new Pessoa(pessoaDTO.Nome, pessoaDTO.Cidade, pessoaDTO.Salario);
         }
 
-        public bool ExistePorId(int id)
-        {
-            return pessoaRepository.ExistePorIdAsync(id).Result;
-        }
-
-        public void Validar(Pessoa pessoa)
+        private static void ValidarPessoa(Pessoa pessoa)
         {
             //Validação a partir de data annotations.
             var validacaoContexto = new ValidationContext(pessoa, null, null);
