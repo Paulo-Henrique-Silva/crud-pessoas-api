@@ -27,7 +27,8 @@ namespace ApiTeste.Tests.ControllerTests
                 new Pessoa(3, "N3", "C3", 3)
             };
 
-            mockPessoaService.Setup(service => service.ObterTudo("id"))
+            //Define que o serviço retornará a lista conforme a ordenação e filtro padrão.
+            mockPessoaService.Setup(service => service.ObterTudo("id", 0, double.MaxValue))
                 .Returns(pessoasEsperadas);
 
             var pessoaController = new PessoaController(mockPessoaService.Object);
