@@ -27,20 +27,17 @@ namespace ApiTeste.Services
             //valida valores de salario minimo e máximo.
             if (salarioMinimo < 0)
             {
-                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'salariominimo'. " +
-                    "Deve ser maior ou igual a zero.");
+                throw new EntradaInvalidaException("'salariominimo' deve ser maior ou igual a zero.");
             }
 
             if (salarioMaximo <= 0)
             {
-                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'salariomaximo'. " +
-                    "Deve ser maior que zero.");
+                throw new EntradaInvalidaException("'salariomaximo' deve ser maior que zero.");
             }
 
             if (salarioMinimo >= salarioMaximo)
             {
-                throw new EntradaInvalidaException("Valores inválidos para o parâmetros de query 'salariominimo' e 'salariomaximo'. " +
-                    "'salariominimo' deve ser menor que 'salariomaximo'.");
+                throw new EntradaInvalidaException("'salariominimo' deve ser menor que 'salariomaximo'.");
             }
 
             //filtra conforme o intervalo de salário
@@ -65,7 +62,7 @@ namespace ApiTeste.Services
             }
             else
             {
-                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'ordenarpor'. Não faz parte dos tipos possíveis.");
+                throw new EntradaInvalidaException("O valor de 'ordernarpor' não faz parte das opções possíveis.");
             }
         }
 
