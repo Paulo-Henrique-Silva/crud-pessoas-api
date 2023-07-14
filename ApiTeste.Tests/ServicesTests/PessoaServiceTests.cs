@@ -30,7 +30,7 @@ namespace ApiTeste.Tests.ServicesTests
             "C1", 500)] //nome ultrapassa limite máximo.
         [InlineData("N1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Pellentesque scelerisque condimentum diam.Sed eu congue nisi.Maecenas ut felis lorem. Etiam malesuada varius massa.", 
             500)] //cidade ultrapassa limite máximo.
-        [InlineData(null, null, -500)] //todos os dados estão incorretos.
+        [InlineData(null, null, -500)] //todos os dados são inválidos.
         public void Cadastrar_Deve_Jogar_Excecao_Com_Dados_Invalidos(string nome, string cidade, double salario)
         {
             var pessoa = new PessoaDTO(nome, cidade, salario);
