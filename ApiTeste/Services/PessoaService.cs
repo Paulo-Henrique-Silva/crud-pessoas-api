@@ -29,6 +29,14 @@ namespace ApiTeste.Services
             {
                 return pessoas.OrderBy(pessoa => pessoa.Id).ToList();
             }
+            else if (ordernarPor.Equals("nome"))
+            {
+                return pessoas.OrderBy(pessoa => pessoa.Nome).ToList();
+            }
+            else if (ordernarPor.Equals("cidade"))
+            {
+                return pessoas.OrderBy(pessoa => pessoa.Cidade).ToList();
+            }
             else if (ordernarPor.Equals("salario"))
             {
                 return pessoas.OrderBy(pessoa => pessoa.Salario).ToList();

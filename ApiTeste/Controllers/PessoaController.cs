@@ -21,7 +21,7 @@ namespace ApiTeste.Controllers
             this.pessoaService = pessoaService;
         }
 
-        [HttpGet("{ordernarpor?}")]
+        [HttpGet]
         public ActionResult ObterTudo([FromQuery] string ordernarPor = "id")
         {
             try
