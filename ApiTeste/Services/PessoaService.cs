@@ -20,14 +20,17 @@ namespace ApiTeste.Services
             this.pessoaRepository = pessoaRepository;
         }
 
-        public List<Pessoa> ObterTudo(string ordernarPor)
+        public List<Pessoa> ObterTudo(string ordernarPor, double salarioMinimo, double salarioMaximo)
         {
             var pessoas = pessoaRepository.ObterTudoAsync().Result;
+
+            //filtra conforme o intervalo de salário
+            pessoas = pessoas.Where(p => p.Salario >= salarioMinimo && p.Salario <= salarioMaximo).ToList();
 
             //ordena conforme a ordenação especificada.
             if (ordernarPor.Equals("id"))
             {
-                return pessoas.OrderBy(pessoa => pessoa.Id).ToList();
+                return pessoas.OrderBy(pessoas => pessoas.Id).ToList();
             }
             else if (ordernarPor.Equals("nome"))
             {

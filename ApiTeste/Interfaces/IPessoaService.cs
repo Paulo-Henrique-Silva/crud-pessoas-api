@@ -5,7 +5,7 @@ namespace ApiTeste.Interfaces
 {
     public interface IPessoaService
     {
-        List<Pessoa> ObterTudo(string ordernarPor);
+        List<Pessoa> ObterTudo(string ordernarPor, double salarioMinimo, double salarioMaximo);
 
         Pessoa ObterPorId(int id);
 

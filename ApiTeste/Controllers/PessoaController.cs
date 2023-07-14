@@ -22,11 +22,12 @@ namespace ApiTeste.Controllers
         }
 
         [HttpGet]
-        public ActionResult ObterTudo([FromQuery] string ordernarPor = "id")
+        public ActionResult ObterTudo([FromQuery] string ordernarPor = "id", 
+            [FromQuery] double salarioMinimo = 0, [FromQuery] double salarioMaximo = double.MaxValue)
         {
             try
             {
-                List<Pessoa> pessoas = pessoaService.ObterTudo(ordernarPor);
+                List<Pessoa> pessoas = pessoaService.ObterTudo(ordernarPor, salarioMinimo, salarioMaximo);
 
                 var resposta = new RespostaSucessoAPI<List<Pessoa>>(StatusCodes.Status200OK, 
                     "Lista de pessoas obtida com sucesso!", pessoas);
