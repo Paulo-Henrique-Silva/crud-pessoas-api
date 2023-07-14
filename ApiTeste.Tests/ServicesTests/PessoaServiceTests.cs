@@ -1,4 +1,5 @@
-﻿using ApiTeste.Exceptions;
+﻿using ApiTeste.Dtos;
+using ApiTeste.Exceptions;
 using ApiTeste.Interfaces;
 using ApiTeste.Models;
 using ApiTeste.Services;
@@ -30,12 +31,12 @@ namespace ApiTeste.Tests.ServicesTests
         [InlineData("N1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Pellentesque scelerisque condimentum diam.Sed eu congue nisi.Maecenas ut felis lorem. Etiam malesuada varius massa.", 
             500)] //cidade ultrapassa limite máximo.
         [InlineData(null, null, -500)] //todos os dados estão incorretos.
-        public void Validar_Deve_Jogar_Excecao_Com_Dados_Invalidos(string nome, string cidade, double salario)
+        public void Cadastrar_Deve_Jogar_Excecao_Com_Dados_Invalidos(string nome, string cidade, double salario)
         {
-            var pessoa = new Pessoa(1, nome, cidade, salario);
+            var pessoa = new PessoaDTO(nome, cidade, salario);
             var pessoaService = new PessoaService(mockPessoaRepository.Object);
 
-            Assert.Throws<EntradaInvalidaException>(() => pessoaService.ValidarPessoa(pessoa));
+            Assert.Throws<EntradaInvalidaException>(() => pessoaService.Cadastrar(pessoa));
         }
     }
 }
