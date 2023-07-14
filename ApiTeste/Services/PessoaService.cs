@@ -24,6 +24,25 @@ namespace ApiTeste.Services
         {
             var pessoas = pessoaRepository.ObterTudoAsync().Result;
 
+            //valida valores de salario minimo e máximo.
+            if (salarioMinimo < 0)
+            {
+                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'salariominimo'. " +
+                    "Deve ser maior ou igual a zero.");
+            }
+
+            if (salarioMaximo <= 0)
+            {
+                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'salariomaximo'. " +
+                    "Deve ser maior que zero.");
+            }
+
+            if (salarioMinimo >= salarioMaximo)
+            {
+                throw new EntradaInvalidaException("Valores inválidos para o parâmetros de query 'salariominimo' e 'salariomaximo'. " +
+                    "'salariominimo' deve ser menor que 'salariomaximo'.");
+            }
+
             //filtra conforme o intervalo de salário
             pessoas = pessoas.Where(p => p.Salario >= salarioMinimo && p.Salario <= salarioMaximo).ToList();
 
@@ -46,7 +65,7 @@ namespace ApiTeste.Services
             }
             else
             {
-                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'ordenarpor'.");
+                throw new EntradaInvalidaException("Valor inválido para o parâmetro de query 'ordenarpor'. Não faz parte dos tipos possíveis.");
             }
         }
 
